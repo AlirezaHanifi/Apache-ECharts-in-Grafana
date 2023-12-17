@@ -4,22 +4,30 @@ The Apache ECharts Panel plugin serves as a data visualization extension for Gra
 
 Apache ECharts is a robust and versatile data visualization library, offering an extensive range of chart types, including statistical capabilities. Developed in pure JavaScript and built on zrender, a lightweight graphic library for chart rendering, Apache ECharts provides a powerful solution for creating interactive and highly customizable charts.
 
-To clarify distinctions and avoid confusion, the Apache ECharts Lite Panel is a fork of the Apache ECharts panel, providing essential functionality without maps and extensions.
+![](./img/apache_echarts_plugin.png)
 
 ## ECharts Function
 
-The core function in the Apache ECharts library is `setOption(options)`. This function is invoked by the Apache ECharts panel (the ECharts function) with the sole required parameter "options" describing the chart in JSON format.
+The Apache ECharts library has a primary function called `setOption(option)`. This function is called by the Apache ECharts panel (the ECharts Function) with only one required parameter "option". This parameter describes the chart in the JSON format.
+The Apache ECharts panel can be configured by writing the ECharts Function. This function generally consists of two parts:
 
-Configuring the Apache ECharts panel primarily involves writing the ECharts Function. This function typically comprises two parts:
+- JavaScript to read data points from the data source.
+- JSON to specify a graph as options.
 
-1. JavaScript to read data points from the data source.
-2. JSON to specify a graph as options.
+The Monaco Editor is used in the Apache ECharts plugin for Grafana. It is a fully featured code editor from VS Code, best known for being the text editor that powers VS Code. However, it’s a bit more nuanced.
 
-Both parts can utilize parameters passed into the ECharts function. Refer to the table below for a complete list of parameters.
+Here are the steps to configure the Apache ECharts panel:
 
-### Options
+1. The process starts with the Grafana dashboard where parameters like data, theme, and echarts are set.
+2. These parameters are then used in a function within the Monaco Code editor in the Apache ECharts visualization panel to edit and configure the ECharts. This function is referred to as the ECharts function.
+3. After editing, this function is executed by calling `.setOption()` method with options as its parameter in the Apache ECharts library.
+   Please refer to the schema and the print screen below for illustration.
 
-The return clause is where you specify the options parameter to be passed into the `setOption(options)` Apache ECharts function.
+![](./img/apache_echarts_library.png)
+
+The return clause is where you need to specify the options parameter to be passed into the `setOption(option)` Apache ECharts function.
+
+![](./img/apache_echarts_plugin_in_grafana.png)
 
 ### Parameters
 
@@ -57,6 +65,22 @@ You can display success and error notifications when handling specific events:
 notifySuccess(["Update", "Values updated successfully."]);
 notifyError(["Update", `An error occurred while updating values.`]);
 ```
+
+### Components
+
+Here are some of the most frequently used components of Apache ECharts and their brief explanations:
+
+- **Series**: A series is a collection of data that is represented on the chart. It can be a line, bar, scatter, pie, or other types of charts.
+- **Legend**: The legend is a component that displays the meaning of the colors or symbols used in the chart.
+- **Tooltip**: The tooltip is a component that displays additional information about the data point when the user hovers over it.
+- **Grid**: The grid is a component that defines the layout of the chart, including the number of rows and columns.
+- **Axis**: The axis is a component that defines the scale and labels of the chart.
+- **Title**: The title is a component that displays the title of the chart.
+- **Toolbox**: The toolbox is a component that provides various tools for the user to interact with the chart, such as data zooming, data view, and more.
+
+![](./img/apache_echarts_components.png)
+
+More information about the components and their usage can be found in the official [Apache ECharts documentation](https://echarts.apache.org/en/cheat-sheet.html).
 
 ## Data Sources
 
